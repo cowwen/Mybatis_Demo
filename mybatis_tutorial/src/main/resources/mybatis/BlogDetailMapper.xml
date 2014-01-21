@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cowwen.tutorial.demo.mapper.BlogDetailMapper">
+    <resultMap id="detailedBlog" type="BlogDetail">
+        <constructor>
+            <idArg column="BLOG_ID" javaType="long"/>
+        </constructor>
+        <result property="subject" column="SUBJECT"/>
+        <result property="content" column="CONTENT"/>
+        <association property="author" javaType="Author">
+            <id property="id" column="AUTHOR_ID"/>
+            <result property="name" column="AUTHOR_NAME"/>
+        </association>
+    </resultMap>
+    
+    <select id="selectBlogDetails" resultMap="detailedBlog">
+        SELECT B.ID AS BLOG_ID, B.SUBJECT AS SUBJECT,
+          B.CONTENT AS CONTENT, A.ID AS AUTHOR_ID,
+          A.NAME AS AUTHOR_NAME
+        FROM TUS_BLOG B
+        LEFT OUTER JOIN TUS_AUTHOR A ON B.AUTHOR_ID = A.ID
+        WHERE B.ID = #{id}
+    </select>
+</mapper>

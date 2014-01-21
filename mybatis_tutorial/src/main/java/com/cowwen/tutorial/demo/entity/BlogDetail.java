@@ -1,42 +1,29 @@
 package com.cowwen.tutorial.demo.entity;
 
-import java.io.Serializable;
-
 /**
  * Created with IntelliJ IDEA.
  * User: cowwen
  * Date: 14-1-21
- * Time: 上午11:30
+ * Time: 下午6:08
  * To change this template use File | Settings | File Templates.
  */
-public class Blog implements Serializable{
+public class BlogDetail {
 
     private Long id;
     private String subject;
     private String content;
-    private Integer authorId;
-    private String authorName;
+    private Author author;
 
-    public Blog() { }
-
-    public Blog(Long id) {
+    public BlogDetail(Long id) {
         this.id = id;
     }
 
-    public Integer getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public void setSubject(String subject) {
