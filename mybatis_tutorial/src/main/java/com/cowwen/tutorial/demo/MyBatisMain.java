@@ -20,13 +20,13 @@ import java.io.InputStream;
  * User: cowwen
  * Date: 14-1-20
  * Time: 下午5:53
- * To change this template use File | Settings | File Templates.
  */
 public class MyBatisMain {
 
     private static final transient Logger log = LoggerFactory.getLogger(MyBatisMain.class);
 
-    public static void main(String[] args) throws IOException {
+    //association mapper
+    public static void main2(String[] args) throws IOException {
         String resources = "mybatis/mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resources);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -57,6 +57,31 @@ public class MyBatisMain {
             blog = mapper.selectBlog(1);
         }finally {
              sqlSession.close();
+        }
+
+        log.info("Blog id: " + blog.getId() + " subject:" +
+                blog.getSubject() + " content:" + blog.getContent() +
+                " reference author id: " + blog.getAuthorId());
+
+    }
+
+    public static void main(String[] args) throws IOException {
+        String resources = "mybatis/mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resources);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        Blog blog = new Blog();
+        blog.setId(10L);
+        blog.setSubject("Mybatis insert mapper test");
+        blog.setContent("Test");
+        blog.setAuthorId(1);
+        try{
+            BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+            mapper.insertBlog(blog);
+            sqlSession.commit();
+            log.info("Successfully insert.");
+        }finally {
+            sqlSession.close();
         }
 
         log.info("Blog id: " + blog.getId() + " subject:" +

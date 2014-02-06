@@ -9,4 +9,9 @@
     <select id="selectBlog" resultMap="blogRslMap">
       select * from TUS_BLOG where id = #{id}
     </select>
+
+    <insert id="insertBlog" parameterType="Blog">
+      INSERT INTO TUS_BLOG(ID, SUBJECT, CONTENT, AUTHOR_ID)
+      VALUES (#{id}, #{subject}, #{content}, #{authorId})
+    </insert>
 </mapper>

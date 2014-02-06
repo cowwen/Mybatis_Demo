@@ -11,4 +11,5 @@ import com.cowwen.tutorial.demo.entity.Blog;
  */
 public interface BlogMapper {
     public Blog selectBlog(long id);
+    public void insertBlog(Blog blog);
 }

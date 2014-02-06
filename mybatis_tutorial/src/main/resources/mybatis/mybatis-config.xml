@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <properties resource="mybatis_config.properties"></properties>
+    <properties resource="mybatis_config.properties" />
     <typeAliases>
         <package name="com.cowwen.tutorial.demo.entity"/>
     </typeAliases>

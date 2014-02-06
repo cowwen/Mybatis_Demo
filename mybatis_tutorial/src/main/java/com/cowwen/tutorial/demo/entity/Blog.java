@@ -7,7 +7,6 @@ import java.io.Serializable;
  * User: cowwen
  * Date: 14-1-21
  * Time: 上午11:30
- * To change this template use File | Settings | File Templates.
  */
 public class Blog implements Serializable{
 
