@@ -71,14 +71,13 @@ public class MyBatisMain {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         Blog blog = new Blog();
-        blog.setId(10L);
         blog.setSubject("Mybatis insert mapper test");
         blog.setContent("Test");
         blog.setAuthorId(1);
         try{
             BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
             mapper.insertBlog(blog);
-            sqlSession.commit();
+            sqlSession.commit(true);
             log.info("Successfully insert.");
         }finally {
             sqlSession.close();
